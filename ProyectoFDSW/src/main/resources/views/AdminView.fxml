@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      style="-fx-background-color: #0f1923; -fx-font-family: 'Segoe UI', sans-serif;"
+      spacing="0" maxWidth="1060" maxHeight="640">
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="15"
+          style="-fx-background-color: linear-gradient(to right, #1a2980, #26d0ce);
+                 -fx-padding: 16px 24px;">
+        <Label text="⚙️  Panel de Administración" 
+               style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;
+                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 4, 0, 0, 2);"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="OpenLib Market · Admin" 
+               style="-fx-text-fill: rgba(255,255,255,0.7); -fx-font-size: 13px;"/>
+    </HBox>
+
+    <!-- TabPane -->
+    <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE"
+             style="-fx-background-color: #0f1923; -fx-tab-min-width: 140px;">
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- TAB 1: DASHBOARD                            -->
+        <!-- ═══════════════════════════════════════════ -->
+        <Tab text="📊 Dashboard" id="tabDashboard">
+            <ScrollPane fitToWidth="true" style="-fx-background: #0f1923; -fx-background-color: #0f1923;">
+                <VBox spacing="20" style="-fx-padding: 20;">
+
+                    <!-- KPI Cards Row -->
+                    <HBox spacing="12">
+                        <!-- Card helper: replicated 6 times -->
+                        <VBox styleClass="kpi-card" alignment="CENTER" HBox.hgrow="ALWAYS"
+                              style="-fx-background-color: #1e2d3d; -fx-background-radius: 12;
+                                     -fx-padding: 18 10; -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.4),8,0,0,2);">
+                            <Label text="👥 Usuarios Totales" style="-fx-text-fill: #8899aa; -fx-font-size: 11px;"/>
+                            <Label fx:id="lblTotalUsuarios" text="—"
+                                   style="-fx-text-fill: #00d4ff; -fx-font-size: 30px; -fx-font-weight: bold;"/>
+                        </VBox>
+                        <VBox alignment="CENTER" HBox.hgrow="ALWAYS"
+                              style="-fx-background-color: #1e2d3d; -fx-background-radius: 12;
+                                     -fx-padding: 18 10; -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.4),8,0,0,2);">
+                            <Label text="✅ Activos" style="-fx-text-fill: #8899aa; -fx-font-size: 11px;"/>
+                            <Label fx:id="lblUsuariosActivos" text="—"
+                                   style="-fx-text-fill: #2ecc71; -fx-font-size: 30px; -fx-font-weight: bold;"/>
+                        </VBox>
+                        <VBox alignment="CENTER" HBox.hgrow="ALWAYS"
+                              style="-fx-background-color: #1e2d3d; -fx-background-radius: 12;
+                                     -fx-padding: 18 10; -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.4),8,0,0,2);">
+                            <Label text="🔒 Bloqueados" style="-fx-text-fill: #8899aa; -fx-font-size: 11px;"/>
+                            <Label fx:id="lblUsuariosBloqueados" text="—"
+                                   style="-fx-text-fill: #e74c3c; -fx-font-size: 30px; -fx-font-weight: bold;"/>
+                        </VBox>
+                        <VBox alignment="CENTER" HBox.hgrow="ALWAYS"
+                              style="-fx-background-color: #1e2d3d; -fx-background-radius: 12;
+                                     -fx-padding: 18 10; -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.4),8,0,0,2);">
+                            <Label text="📚 Libros Totales" style="-fx-text-fill: #8899aa; -fx-font-size: 11px;"/>
+                            <Label fx:id="lblTotalLibros" text="—"
+                                   style="-fx-text-fill: #f39c12; -fx-font-size: 30px; -fx-font-weight: bold;"/>
+                        </VBox>
+                        <VBox alignment="CENTER" HBox.hgrow="ALWAYS"
+                              style="-fx-background-color: #1e2d3d; -fx-background-radius: 12;
+                                     -fx-padding: 18 10; -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.4),8,0,0,2);">
+                            <Label text="⏳ Pendientes" style="-fx-text-fill: #8899aa; -fx-font-size: 11px;"/>
+                            <Label fx:id="lblLibrosPendientes" text="—"
+                                   style="-fx-text-fill: #e67e22; -fx-font-size: 30px; -fx-font-weight: bold;"/>
+                        </VBox>
+                        <VBox alignment="CENTER" HBox.hgrow="ALWAYS"
+                              style="-fx-background-color: #1e2d3d; -fx-background-radius: 12;
+                                     -fx-padding: 18 10; -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.4),8,0,0,2);">
+                            <Label text="💰 Ingresos" style="-fx-text-fill: #8899aa; -fx-font-size: 11px;"/>
+                            <Label fx:id="lblIngresos" text="—"
+                                   style="-fx-text-fill: #9b59b6; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Bottom section: Top libros + Categorias -->
+                    <HBox spacing="16">
+                        <VBox spacing="8" HBox.hgrow="ALWAYS"
+                              style="-fx-background-color: #1e2d3d; -fx-background-radius: 12; -fx-padding: 16;">
+                            <Label text="🏆 Top 5 Libros más Clicados"
+                                   style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #f39c12;"/>
+                            <ListView fx:id="listTopLibros" prefHeight="200"
+                                      style="-fx-background-color: transparent; -fx-control-inner-background: transparent;
+                                             -fx-text-fill: #ecf0f1;"/>
+                        </VBox>
+                        <VBox spacing="8" HBox.hgrow="ALWAYS"
+                              style="-fx-background-color: #1e2d3d; -fx-background-radius: 12; -fx-padding: 16;">
+                            <Label text="📁 Distribución por Categoría"
+                                   style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #00d4ff;"/>
+                            <ListView fx:id="listCategoriasDistrib" prefHeight="200"
+                                      style="-fx-background-color: transparent; -fx-control-inner-background: transparent;
+                                             -fx-text-fill: #ecf0f1;"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </ScrollPane>
+        </Tab>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- TAB 2: CURACIÓN                             -->
+        <!-- ═══════════════════════════════════════════ -->
+        <Tab text="🔍 Curación" id="tabCuracion">
+            <VBox spacing="16" style="-fx-padding: 20; -fx-background-color: #0f1923;">
+                <HBox alignment="CENTER_RIGHT">
+                    <Button fx:id="btnRecargarCuracion" text="🔄 Validar ahora"
+                            onAction="#recargarCuracion"
+                            style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 8 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                </HBox>
+                <HBox spacing="16" VBox.vgrow="ALWAYS">
+                    <VBox spacing="8" HBox.hgrow="ALWAYS"
+                          style="-fx-background-color: #1e2d3d; -fx-background-radius: 12; -fx-padding: 16;">
+                        <Label text="⚠️ Libros con Problemas"
+                               style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #e74c3c;"/>
+                        <Label text="Sin portada · Sin ISBN · Precio = 0"
+                               style="-fx-font-size: 11px; -fx-text-fill: #8899aa;"/>
+                        <ListView fx:id="listLibrosProblemas" VBox.vgrow="ALWAYS" prefHeight="350"
+                                  style="-fx-background-color: transparent; -fx-control-inner-background: transparent;
+                                         -fx-text-fill: #ecf0f1;"/>
+                    </VBox>
+                    <VBox spacing="8" HBox.hgrow="ALWAYS"
+                          style="-fx-background-color: #1e2d3d; -fx-background-radius: 12; -fx-padding: 16;">
+                        <Label text="🔒 Usuarios Bloqueados"
+                               style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #f39c12;"/>
+                        <Label text="Cuentas desactivadas por intentos fallidos"
+                               style="-fx-font-size: 11px; -fx-text-fill: #8899aa;"/>
+                        <ListView fx:id="listUsuariosBloqueados" VBox.vgrow="ALWAYS" prefHeight="350"
+                                  style="-fx-background-color: transparent; -fx-control-inner-background: transparent;
+                                         -fx-text-fill: #ecf0f1;"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </Tab>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- TAB 3: USUARIOS                             -->
+        <!-- ═══════════════════════════════════════════ -->
+        <Tab text="👥 Usuarios" id="tabUsuarios">
+            <VBox spacing="12" style="-fx-padding: 20; -fx-background-color: #0f1923;">
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="txtBuscarUsuario" promptText="🔎 Buscar por nombre o email..."
+                               prefWidth="320"
+                               style="-fx-background-color: #1e2d3d; -fx-text-fill: white;
+                                      -fx-prompt-text-fill: #8899aa; -fx-background-radius: 8; -fx-padding: 8 14;
+                                      -fx-border-color: #2c3e50; -fx-border-radius: 8;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="✅ Activar" onAction="#activarUsuario"
+                            style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 8 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                    <Button text="🔒 Desactivar" onAction="#desactivarUsuario"
+                            style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 8 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                    <Button text="🗑 Eliminar" onAction="#eliminarUsuario"
+                            style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 8 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                </HBox>
+                <TableView fx:id="tableUsuarios" VBox.vgrow="ALWAYS"
+                           style="-fx-background-color: #1e2d3d; -fx-table-cell-border-color: #2c3e50;
+                                  -fx-control-inner-background: #1e2d3d; -fx-background-radius: 12;">
+                    <columns>
+                        <TableColumn fx:id="colUsuId"       text="ID"       prefWidth="50"/>
+                        <TableColumn fx:id="colUsuNombre"   text="Nombre"   prefWidth="200"/>
+                        <TableColumn fx:id="colUsuEmail"    text="Email"    prefWidth="250"/>
+                        <TableColumn fx:id="colUsuActivo"   text="Activo"   prefWidth="80"/>
+                        <TableColumn fx:id="colUsuIntentos" text="Intentos" prefWidth="80"/>
+                    </columns>
+                    <placeholder><Label text="No hay usuarios." style="-fx-text-fill: #8899aa;"/></placeholder>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- TAB 4: LIBROS                               -->
+        <!-- ═══════════════════════════════════════════ -->
+        <Tab text="📚 Libros" id="tabLibros">
+            <VBox spacing="12" style="-fx-padding: 20; -fx-background-color: #0f1923;">
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Estado:" style="-fx-text-fill: #8899aa;"/>
+                    <ComboBox fx:id="cmbFiltroEstado" prefWidth="160"
+                              style="-fx-background-color: #1e2d3d; -fx-text-fill: white; -fx-background-radius: 8;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="✅ Aprobar" onAction="#aprobarLibro"
+                            style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 8 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                    <Button text="❌ Rechazar" onAction="#rechazarLibro"
+                            style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 8 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                    <Button text="🗑 Eliminar" onAction="#eliminarLibro"
+                            style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 8 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                </HBox>
+                <TableView fx:id="tableLibros" VBox.vgrow="ALWAYS"
+                           style="-fx-background-color: #1e2d3d; -fx-table-cell-border-color: #2c3e50;
+                                  -fx-control-inner-background: #1e2d3d; -fx-background-radius: 12;">
+                    <columns>
+                        <TableColumn fx:id="colLibId"        text="ID"        prefWidth="50"/>
+                        <TableColumn fx:id="colLibTitulo"    text="Título"    prefWidth="220"/>
+                        <TableColumn fx:id="colLibAutor"     text="Autor"     prefWidth="160"/>
+                        <TableColumn fx:id="colLibCategoria" text="Categoría" prefWidth="140"/>
+                        <TableColumn fx:id="colLibPrecio"    text="Precio"    prefWidth="80"/>
+                        <TableColumn fx:id="colLibStock"     text="Stock"     prefWidth="60"/>
+                        <TableColumn fx:id="colLibEstado"    text="Estado"    prefWidth="100"/>
+                    </columns>
+                    <placeholder><Label text="No hay libros." style="-fx-text-fill: #8899aa;"/></placeholder>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- TAB 5: CATEGORÍAS                           -->
+        <!-- ═══════════════════════════════════════════ -->
+        <Tab text="🗂 Categorías" id="tabCategorias">
+            <HBox spacing="16" style="-fx-padding: 20; -fx-background-color: #0f1923;">
+                <!-- Tabla -->
+                <VBox spacing="10" HBox.hgrow="ALWAYS">
+                    <TableView fx:id="tableCategorias" VBox.vgrow="ALWAYS"
+                               onMouseClicked="#seleccionarCategoria"
+                               style="-fx-background-color: #1e2d3d; -fx-control-inner-background: #1e2d3d;
+                                      -fx-background-radius: 12;">
+                        <columns>
+                            <TableColumn fx:id="colCatId"    text="ID"          prefWidth="50"/>
+                            <TableColumn fx:id="colCatNombre" text="Nombre"     prefWidth="200"/>
+                            <TableColumn fx:id="colCatDesc"   text="Descripción" prefWidth="260"/>
+                            <TableColumn fx:id="colCatTotal"  text="# Libros"   prefWidth="80"/>
+                        </columns>
+                        <placeholder><Label text="Sin categorías." style="-fx-text-fill: #8899aa;"/></placeholder>
+                    </TableView>
+                </VBox>
+                <!-- Formulario -->
+                <VBox spacing="12" prefWidth="280"
+                      style="-fx-background-color: #1e2d3d; -fx-background-radius: 12; -fx-padding: 20;">
+                    <Label text="Nueva / Editar Categoría"
+                           style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #f39c12;"/>
+                    <Separator style="-fx-background-color: #f39c12;"/>
+                    <Label text="Nombre:" style="-fx-text-fill: #8899aa; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtNombreCategoria" promptText="Ej: Ciencia Ficción"
+                               style="-fx-background-color: #0f1923; -fx-text-fill: white;
+                                      -fx-prompt-text-fill: #5a6a7a; -fx-background-radius: 6; -fx-padding: 8;
+                                      -fx-border-color: #2c3e50; -fx-border-radius: 6;"/>
+                    <Label text="Descripción:" style="-fx-text-fill: #8899aa; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtDescCategoria" promptText="Descripción opcional"
+                               style="-fx-background-color: #0f1923; -fx-text-fill: white;
+                                      -fx-prompt-text-fill: #5a6a7a; -fx-background-radius: 6; -fx-padding: 8;
+                                      -fx-border-color: #2c3e50; -fx-border-radius: 6;"/>
+                    <Region VBox.vgrow="ALWAYS"/>
+                    <Button text="💾 Guardar" onAction="#guardarCategoria" maxWidth="Infinity"
+                            style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 10; -fx-background-radius: 8; -fx-cursor: hand; -fx-font-size: 13px;"/>
+                    <Button text="🗑 Eliminar Seleccionada" onAction="#eliminarCategoria" maxWidth="Infinity"
+                            style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 10; -fx-background-radius: 8; -fx-cursor: hand; -fx-font-size: 13px;"/>
+                </VBox>
+            </HBox>
+        </Tab>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- TAB 6: ETIQUETAS                            -->
+        <!-- ═══════════════════════════════════════════ -->
+        <Tab text="🏷 Etiquetas" id="tabEtiquetas">
+            <HBox spacing="16" style="-fx-padding: 20; -fx-background-color: #0f1923;">
+                <VBox spacing="10" HBox.hgrow="ALWAYS">
+                    <TableView fx:id="tableEtiquetas" VBox.vgrow="ALWAYS"
+                               onMouseClicked="#seleccionarEtiqueta"
+                               style="-fx-background-color: #1e2d3d; -fx-control-inner-background: #1e2d3d;
+                                      -fx-background-radius: 12;">
+                        <columns>
+                            <TableColumn fx:id="colEtqId"     text="ID"         prefWidth="60"/>
+                            <TableColumn fx:id="colEtqNombre" text="Nombre"     prefWidth="320"/>
+                            <TableColumn fx:id="colEtqTotal"  text="# Libros"   prefWidth="100"/>
+                        </columns>
+                        <placeholder><Label text="Sin etiquetas registradas." style="-fx-text-fill: #8899aa;"/></placeholder>
+                    </TableView>
+                </VBox>
+                <!-- Formulario -->
+                <VBox spacing="12" prefWidth="260"
+                      style="-fx-background-color: #1e2d3d; -fx-background-radius: 12; -fx-padding: 20;">
+                    <Label text="Nueva / Editar Etiqueta"
+                           style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #9b59b6;"/>
+                    <Separator style="-fx-background-color: #9b59b6;"/>
+                    <Label text="Nombre:" style="-fx-text-fill: #8899aa; -fx-font-size: 12px;"/>
+                    <TextField fx:id="txtNombreEtiqueta" promptText="Ej: machine-learning"
+                               style="-fx-background-color: #0f1923; -fx-text-fill: white;
+                                      -fx-prompt-text-fill: #5a6a7a; -fx-background-radius: 6; -fx-padding: 8;
+                                      -fx-border-color: #2c3e50; -fx-border-radius: 6;"/>
+                    <Region VBox.vgrow="ALWAYS"/>
+                    <Button text="💾 Guardar" onAction="#guardarEtiqueta" maxWidth="Infinity"
+                            style="-fx-background-color: #8e44ad; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 10; -fx-background-radius: 8; -fx-cursor: hand; -fx-font-size: 13px;"/>
+                    <Button text="🗑 Eliminar Seleccionada" onAction="#eliminarEtiqueta" maxWidth="Infinity"
+                            style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 10; -fx-background-radius: 8; -fx-cursor: hand; -fx-font-size: 13px;"/>
+                </VBox>
+            </HBox>
+        </Tab>
+
+    </TabPane>
+</VBox>

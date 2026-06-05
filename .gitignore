@@ -1,0 +1,23 @@
+*.class
+*.jar
+*.war
+*.db
+*.mv.db
+*.trace.db
+target/
+build/
+dependency-reduced-pom.xml
+.idea/
+.vscode/
+*.iml
+*.log
+.DS_Store
+Thumbs.db
+*.zip
+maven/
+ProyectoFDSW/ProyectoFDSW/
+ProyectoFDSW/proyectocasit/
+ProyectoFDSW/maven/
+ProyectoFDSW/ProyectoFDSWv5.zip
+ProyectoFDSW/maven.zip
+ProyectoFDSW/proyectocasit (1).zip

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" style="-fx-padding: 30px; -fx-background-color: #f5f6fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label text="Mi Biblioteca Personal" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Region HBox.hgrow="ALWAYS" />
+        <TextField fx:id="txtBuscador" promptText="Buscar en mis libros..." style="-fx-pref-width: 300px; -fx-padding: 10px; -fx-background-radius: 20px; -fx-border-radius: 20px;"/>
+    </HBox>
+    
+    <StackPane VBox.vgrow="ALWAYS">
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+            <FlowPane fx:id="flowEstanteria" hgap="25" vgap="25" style="-fx-padding: 10px;" />
+        </ScrollPane>
+        
+        <VBox fx:id="vboxVacio" alignment="CENTER" spacing="15" visible="false" managed="false">
+            <Label text="Aun no tienes libros en tu biblioteca." style="-fx-font-size: 20px; -fx-text-fill: #7f8c8d;"/>
+            <Button fx:id="btnExplorar" text="¡Explora nuestra tienda!" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10px 25px; -fx-background-radius: 5px; -fx-cursor: hand;"/>
+        </VBox>
+    </StackPane>
+
+    <HBox alignment="CENTER_RIGHT">
+        <Button fx:id="btnCerrar" text="Cerrar Biblioteca" style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10px 25px; -fx-background-radius: 5px; -fx-cursor: hand;"/>
+    </HBox>
+</VBox>

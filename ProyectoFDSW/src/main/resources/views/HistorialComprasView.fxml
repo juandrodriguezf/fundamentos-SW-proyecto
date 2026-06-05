@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="15" style="-fx-padding: 30px; -fx-background-color: #f5f6fa;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    
+    <Label text="Mis Compras y Transacciones" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+    
+    <!-- Contenedor principal con lista de ordenes y detalle lado a lado -->
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        
+        <!-- Lista de Ordenes -->
+        <VBox spacing="10" HBox.hgrow="SOMETIMES" style="-fx-pref-width: 300px;">
+            <Label text="Historial de Pedidos" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+            <ListView fx:id="listOrdenes" VBox.vgrow="ALWAYS" style="-fx-background-radius: 10px; -fx-border-radius: 10px; -fx-border-color: #bdc3c7;"/>
+        </VBox>
+        
+        <!-- Detalle de la Orden seleccionada -->
+        <VBox fx:id="vboxDetalle" spacing="15" HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-padding: 20px; -fx-background-radius: 10px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);" visible="false">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Detalle de Orden:" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2980b9;"/>
+                <Label fx:id="lblOrdenId" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            </HBox>
+            
+            <GridPane hgap="15" vgap="10">
+                <Label text="Fecha:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+                <Label fx:id="lblFecha" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                
+                <Label text="Estado:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+                <Label fx:id="lblEstado" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                
+                <Label text="Total:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;"/>
+                <Label fx:id="lblTotal" GridPane.columnIndex="1" GridPane.rowIndex="2" style="-fx-font-weight: bold; -fx-text-fill: #e74c3c;"/>
+            </GridPane>
+            
+            <Label text="Productos Adquiridos:" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+            <TableView fx:id="tablaProductos" VBox.vgrow="ALWAYS" style="-fx-background-color: white;">
+                <columns>
+                    <TableColumn fx:id="colTitulo" text="Libro" prefWidth="250" />
+                    <TableColumn fx:id="colCantidad" text="Cant." prefWidth="60" />
+                    <TableColumn fx:id="colPrecio" text="Precio Unit." prefWidth="100" />
+                    <TableColumn fx:id="colSubtotal" text="Subtotal" prefWidth="100" />
+                </columns>
+            </TableView>
+            
+            <HBox alignment="CENTER_RIGHT" spacing="15">
+                <Label fx:id="lblMensaje" text="" style="-fx-text-fill: #2ecc71; -fx-font-weight: bold;"/>
+                <Button fx:id="btnDescargarFactura" text="Descargar Factura PDF" style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 15px; -fx-background-radius: 5px; -fx-cursor: hand;"/>
+            </HBox>
+        </VBox>
+    </HBox>
+
+    <HBox alignment="CENTER_RIGHT">
+        <Button fx:id="btnCerrar" text="Cerrar" style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10px 25px; -fx-background-radius: 5px; -fx-cursor: hand;"/>
+    </HBox>
+</VBox>

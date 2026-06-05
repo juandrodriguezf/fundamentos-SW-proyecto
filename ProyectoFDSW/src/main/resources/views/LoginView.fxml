@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           style="-fx-background-color: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);">
+
+    <!-- Contenedor centrado -->
+    <VBox alignment="CENTER" spacing="0"
+          style="-fx-background-color: rgba(255,255,255,0.07);
+                 -fx-background-radius: 20px;
+                 -fx-border-color: rgba(255,255,255,0.15);
+                 -fx-border-radius: 20px;
+                 -fx-border-width: 1px;
+                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 40, 0, 0, 10);"
+          maxWidth="420" maxHeight="620">
+
+        <!-- Header con gradiente -->
+        <VBox alignment="CENTER" spacing="8"
+              style="-fx-background-color: linear-gradient(to right, #6a11cb, #2575fc);
+                     -fx-background-radius: 20px 20px 0 0;
+                     -fx-padding: 35px 30px 25px 30px;">
+
+            <Label text="🔑" style="-fx-font-size: 38px;"/>
+            <Label text="Iniciar Sesión" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-family: 'Segoe UI';"/>
+            <Label text="Bienvenido de nuevo a OpenLib Market"
+                   style="-fx-font-size: 13px; -fx-text-fill: rgba(255,255,255,0.8); -fx-font-family: 'Segoe UI';"/>
+        </VBox>
+
+        <!-- Cuerpo del formulario -->
+        <VBox spacing="18" style="-fx-padding: 30px 35px 20px 35px;">
+
+            <!-- Campo Email -->
+            <VBox spacing="6">
+                <Label text="Correo Electrónico"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: rgba(255,255,255,0.85); -fx-font-family: 'Segoe UI';"/>
+                <TextField fx:id="txtEmail"
+                           promptText="ejemplo@correo.com"
+                           style="-fx-background-color: rgba(255,255,255,0.1);
+                                  -fx-text-fill: white;
+                                  -fx-prompt-text-fill: rgba(255,255,255,0.4);
+                                  -fx-padding: 12px 15px;
+                                  -fx-font-size: 14px;
+                                  -fx-background-radius: 10px;
+                                  -fx-border-color: rgba(255,255,255,0.2);
+                                  -fx-border-radius: 10px;
+                                  -fx-font-family: 'Segoe UI';"/>
+
+                <!-- Indicador de registro -->
+                <HBox spacing="6" alignment="CENTER_LEFT">
+                    <Label fx:id="lblEstadoRegistro" text=""
+                           style="-fx-font-size: 12px; -fx-font-family: 'Segoe UI';" visible="false" managed="false"/>
+                </HBox>
+            </VBox>
+
+            <!-- Campo Contraseña -->
+            <VBox spacing="6">
+                <Label text="Contraseña"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: rgba(255,255,255,0.85); -fx-font-family: 'Segoe UI';"/>
+                <PasswordField fx:id="txtPassword"
+                               promptText="Tu contraseña"
+                               style="-fx-background-color: rgba(255,255,255,0.1);
+                                      -fx-text-fill: white;
+                                      -fx-prompt-text-fill: rgba(255,255,255,0.4);
+                                      -fx-padding: 12px 15px;
+                                      -fx-font-size: 14px;
+                                      -fx-background-radius: 10px;
+                                      -fx-border-color: rgba(255,255,255,0.2);
+                                      -fx-border-radius: 10px;
+                                      -fx-font-family: 'Segoe UI';"/>
+            </VBox>
+
+            <!-- Mensaje de estado (errores / éxito) -->
+            <Label fx:id="lblMensaje" text=""
+                   style="-fx-font-size: 13px; -fx-font-family: 'Segoe UI'; -fx-wrap-text: true; -fx-text-alignment: center;"
+                   visible="false" managed="false" maxWidth="350"/>
+
+            <!-- Botón de login -->
+            <Button fx:id="btnLogin" text="Entrar"
+                    style="-fx-background-color: linear-gradient(to right, #6a11cb, #2575fc);
+                           -fx-text-fill: white;
+                           -fx-font-size: 16px;
+                           -fx-font-weight: bold;
+                           -fx-padding: 13px 20px;
+                           -fx-background-radius: 10px;
+                           -fx-cursor: hand;
+                           -fx-font-family: 'Segoe UI';
+                           -fx-effect: dropshadow(gaussian, rgba(106,17,203,0.5), 15, 0, 0, 4);"
+                    maxWidth="Infinity"/>
+
+            <ProgressIndicator fx:id="progressIndicator" visible="false" managed="false"
+                               style="-fx-pref-width: 35px; -fx-pref-height: 35px; -fx-progress-color: #6a11cb;"/>
+
+            <!-- Separador -->
+            <Separator style="-fx-background-color: rgba(255,255,255,0.1);"/>
+
+            <!-- Links inferiores -->
+            <VBox spacing="12" alignment="CENTER">
+
+                <!-- ¿No tienes cuenta? -->
+                <HBox alignment="CENTER" spacing="6">
+                    <Label text="¿No tienes cuenta?"
+                           style="-fx-font-size: 13px; -fx-text-fill: rgba(255,255,255,0.6); -fx-font-family: 'Segoe UI';"/>
+                    <Hyperlink fx:id="linkRegistrarse" text="Regístrate aquí"
+                               style="-fx-text-fill: #a78bfa;
+                                      -fx-font-size: 13px;
+                                      -fx-font-weight: bold;
+                                      -fx-border-color: transparent;
+                                      -fx-font-family: 'Segoe UI';"/>
+                </HBox>
+
+                <!-- Cambiar contraseña -->
+                <HBox alignment="CENTER" spacing="6">
+                    <Label text="¿Olvidaste tu contraseña o cuenta bloqueada?"
+                           style="-fx-font-size: 12px; -fx-text-fill: rgba(255,255,255,0.5); -fx-font-family: 'Segoe UI';"/>
+                </HBox>
+                <Hyperlink fx:id="linkCambiarPassword" text="🔓 Cambiar contraseña"
+                           style="-fx-text-fill: #f59e0b;
+                                  -fx-font-size: 13px;
+                                  -fx-font-weight: bold;
+                                  -fx-border-color: transparent;
+                                  -fx-font-family: 'Segoe UI';"/>
+            </VBox>
+        </VBox>
+
+        <VBox style="-fx-padding: 0 0 20px 0;"/>
+    </VBox>
+</StackPane>

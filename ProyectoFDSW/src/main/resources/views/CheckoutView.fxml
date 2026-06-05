@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" alignment="TOP_CENTER" prefWidth="500" prefHeight="650" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Indicador de progreso -->
+    <HBox spacing="10" alignment="CENTER" style="-fx-padding: 10;">
+        <Label fx:id="lblProgreso1" text="1. Direccion" style="-fx-font-weight: bold; -fx-text-fill: #3498db; -fx-font-size: 14px;"/>
+        <Label text=">" style="-fx-text-fill: #7f8c8d;"/>
+        <Label fx:id="lblProgreso2" text="2. Pago" style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px;"/>
+        <Label text=">" style="-fx-text-fill: #7f8c8d;"/>
+        <Label fx:id="lblProgreso3" text="3. Confirmacion" style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px;"/>
+    </HBox>
+    <Separator/>
+
+    <StackPane VBox.vgrow="ALWAYS">
+        <!-- Paso 1: Dirección -->
+        <VBox fx:id="vboxPaso1" spacing="15" visible="true" managed="true">
+            <Label text="Direccion de Facturacion y Envio" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+            
+            <GridPane hgap="10" vgap="15">
+                <Label text="Nombre Completo:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="txtNombre" promptText="Ej. Juan Perez" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS"/>
+                
+                <Label text="Direccion:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="txtDireccion" promptText="Ej. Calle Falsa 123" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.hgrow="ALWAYS"/>
+                
+                <Label text="Ciudad:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextField fx:id="txtCiudad" promptText="Ej. Bogota" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.hgrow="ALWAYS"/>
+                
+                <Label text="Codigo Postal:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <TextField fx:id="txtPostal" promptText="Ej. 110111" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.hgrow="ALWAYS"/>
+            </GridPane>
+            
+            <Region VBox.vgrow="ALWAYS"/>
+            <HBox alignment="CENTER_RIGHT" spacing="15">
+                <Button fx:id="btnCancelar" text="Cancelar" style="-fx-background-color: transparent; -fx-text-fill: #7f8c8d; -fx-cursor: hand;"/>
+                <Button fx:id="btnSiguiente1" text="Continuar a Pago" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20; -fx-cursor: hand;"/>
+            </HBox>
+        </VBox>
+
+        <!-- Paso 2: Método de Pago -->
+        <VBox fx:id="vboxPaso2" spacing="15" visible="false" managed="false">
+            <Label text="Selecciona tu Metodo de Pago" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+            
+            <VBox spacing="10" style="-fx-padding: 15; -fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #e0e0e0; -fx-border-radius: 8;">
+                <ComboBox fx:id="cmbMetodoPago" maxWidth="Infinity" promptText="Selecciona un metodo"/>
+                
+                <VBox fx:id="vboxDatosTarjeta" spacing="10" style="-fx-padding: 10 0 0 0;">
+                    <Label text="Numero de Tarjeta:"/>
+                    <TextField fx:id="txtTarjetaNum" promptText="XXXX-XXXX-XXXX-XXXX"/>
+                    <HBox spacing="10">
+                        <VBox HBox.hgrow="ALWAYS">
+                            <Label text="Vencimiento (MM/AA):"/>
+                            <TextField fx:id="txtTarjetaVenc" promptText="MM/AA"/>
+                        </VBox>
+                        <VBox HBox.hgrow="ALWAYS">
+                            <Label text="CVV:"/>
+                            <TextField fx:id="txtTarjetaCvv" promptText="123"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+            <HBox alignment="CENTER_RIGHT" spacing="15">
+                <Button fx:id="btnAtras2" text="Atras" style="-fx-background-color: #ecf0f1; -fx-text-fill: #34495e; -fx-cursor: hand;"/>
+                <Button fx:id="btnSiguiente2" text="Revisar Orden" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 20; -fx-cursor: hand;"/>
+            </HBox>
+        </VBox>
+
+        <!-- Paso 3: Revisión Final -->
+        <VBox fx:id="vboxPaso3" spacing="15" visible="false" managed="false">
+            <Label text="Revisa y Confirma tu Orden" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+            
+            <ListView fx:id="listResumen" prefHeight="180" />
+
+            <VBox spacing="8" style="-fx-padding: 15; -fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #e0e0e0; -fx-border-radius: 8;">
+                <HBox spacing="10">
+                    <Label text="Subtotal:" style="-fx-font-weight: bold;" prefWidth="150"/>
+                    <Label fx:id="lblSubtotal" text="Calculando..."/>
+                </HBox>
+                <HBox spacing="10">
+                    <Label text="Impuestos (19%):" style="-fx-font-weight: bold;" prefWidth="150"/>
+                    <Label fx:id="lblImpuestos" text="Calculando..."/>
+                </HBox>
+                <HBox spacing="10">
+                    <Label text="Envio:" style="-fx-font-weight: bold;" prefWidth="150"/>
+                    <Label fx:id="lblEnvio" text="Calculando..."/>
+                </HBox>
+                <Separator style="-fx-padding: 5 0;"/>
+                <HBox spacing="10">
+                    <Label text="Total a Pagar:" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2ecc71;" prefWidth="150"/>
+                    <Label fx:id="lblTotal" text="Calculando..." style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2ecc71;"/>
+                </HBox>
+            </VBox>
+
+            <Label fx:id="lblMensajePago" visible="false" managed="false" alignment="CENTER" maxWidth="Infinity"/>
+            
+            <Region VBox.vgrow="ALWAYS"/>
+            <HBox alignment="CENTER" spacing="15">
+                <Button fx:id="btnAtras3" text="Atras" style="-fx-background-color: #ecf0f1; -fx-text-fill: #34495e; -fx-cursor: hand;"/>
+                <Button fx:id="btnPagar" text="Pagar y Generar Comprobante" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-cursor: hand;"/>
+                <Button fx:id="btnVolver" text="Volver al Catalogo" visible="false" managed="false" style="-fx-background-color: #ecf0f1; -fx-text-fill: #34495e; -fx-cursor: hand;"/>
+            </HBox>
+        </VBox>
+    </StackPane>
+</VBox>
