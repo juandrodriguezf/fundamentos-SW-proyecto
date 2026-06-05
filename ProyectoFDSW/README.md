@@ -1,6 +1,36 @@
-# OpenLib Market - Plan de Entrega 1 (MVP)
+# OpenLib Market
 
-Este repositorio contiene la **primera versión inicial** del proyecto **OpenLib Market**, estructurado bajo el patrón de **Arquitectura Limpia (Clean Architecture)**. 
+Aplicación de biblioteca digital desarrollada con **JavaFX 21**, **H2 Database** y una **API REST de reseñas en Spring Boot**.
+
+---
+
+## Cómo ejecutar
+
+### Requisitos
+- **JDK 17 o superior** instalado y configurado en el `PATH`
+
+### 1. App principal (JavaFX)
+```bash
+cd ProyectoFDSW
+./mvnw clean javafx:run
+```
+> **Nota:** No funciona darle "play" directamente a `Launcher.java` desde el IDE porque JavaFX no está incluido en el JDK desde Java 11. El `mvnw` (Maven Wrapper) descarga las dependencias automáticamente.
+
+Si usas IntelliJ, puedes crear un Run Configuration de Maven congoal `javafx:run`, o configurar los VM arguments con `--module-path` apuntando al SDK de JavaFX.
+
+### 2. API de reseñas (Spring Boot) — opcional
+Para que las reseñas funcionen, inicia este microservicio en otra terminal:
+```bash
+cd reviews-api
+./mvnw spring-boot:run
+```
+Corre en `http://localhost:8081`. La app principal funciona sin esto, pero las reseñas no cargarán.
+
+---
+
+## Plan de Entrega 1 (MVP)
+
+Este repositorio contiene la **primera versión inicial** del proyecto **OpenLib Market**, estructurado bajo el patrón de **Arquitectura Limpia (Clean Architecture)**.
 
 > **Estado Actual del Proyecto:** Actualmente, este repositorio **solo contiene la implementación de la primera historia de usuario ("Buscar Libro" y funcionalidades relacionadas)**. A medida que el desarrollo avance, se irán realizando commits integrando los demás módulos descritos a continuación.
 
