@@ -78,6 +78,13 @@
                         </VBox>
                     </HBox>
 
+                    <!-- Export Dashboard -->
+                    <HBox alignment="CENTER_RIGHT">
+                        <Button text="📥 Exportar Dashboard CSV" onAction="#exportarDashboard"
+                                style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-font-weight: bold;
+                                       -fx-padding: 8 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                    </HBox>
+
                     <!-- Bottom section: Top libros + Categorias -->
                     <HBox spacing="16">
                         <VBox spacing="8" HBox.hgrow="ALWAYS"
@@ -106,7 +113,10 @@
         <!-- ═══════════════════════════════════════════ -->
         <Tab text="🔍 Curación" id="tabCuracion">
             <VBox spacing="16" style="-fx-padding: 20; -fx-background-color: #0f1923;">
-                <HBox alignment="CENTER_RIGHT">
+                <HBox alignment="CENTER_RIGHT" spacing="10">
+                    <Button text="📥 Exportar CSV" onAction="#exportarUsuarios"
+                            style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 8 20; -fx-background-radius: 8; -fx-cursor: hand;"/>
                     <Button fx:id="btnRecargarCuracion" text="🔄 Validar ahora"
                             onAction="#recargarCuracion"
                             style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold;
@@ -149,6 +159,9 @@
                                       -fx-prompt-text-fill: #8899aa; -fx-background-radius: 8; -fx-padding: 8 14;
                                       -fx-border-color: #2c3e50; -fx-border-radius: 8;"/>
                     <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="📥 Exportar CSV" onAction="#exportarUsuarios"
+                            style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 8 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
                     <Button text="✅ Activar" onAction="#activarUsuario"
                             style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;
                                    -fx-padding: 8 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
@@ -184,6 +197,9 @@
                     <ComboBox fx:id="cmbFiltroEstado" prefWidth="160"
                               style="-fx-background-color: #1e2d3d; -fx-text-fill: white; -fx-background-radius: 8;"/>
                     <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="📥 Exportar CSV" onAction="#exportarLibros"
+                            style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 8 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
                     <Button text="✅ Aprobar" onAction="#aprobarLibro"
                             style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;
                                    -fx-padding: 8 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
@@ -218,6 +234,11 @@
             <HBox spacing="16" style="-fx-padding: 20; -fx-background-color: #0f1923;">
                 <!-- Tabla -->
                 <VBox spacing="10" HBox.hgrow="ALWAYS">
+                    <HBox alignment="CENTER_RIGHT">
+                        <Button text="📥 Exportar CSV" onAction="#exportarCategorias"
+                                style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-font-weight: bold;
+                                       -fx-padding: 6 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                    </HBox>
                     <TableView fx:id="tableCategorias" VBox.vgrow="ALWAYS"
                                onMouseClicked="#seleccionarCategoria"
                                style="-fx-background-color: #1e2d3d; -fx-control-inner-background: #1e2d3d;
@@ -264,6 +285,11 @@
         <Tab text="🏷 Etiquetas" id="tabEtiquetas">
             <HBox spacing="16" style="-fx-padding: 20; -fx-background-color: #0f1923;">
                 <VBox spacing="10" HBox.hgrow="ALWAYS">
+                    <HBox alignment="CENTER_RIGHT">
+                        <Button text="📥 Exportar CSV" onAction="#exportarEtiquetas"
+                                style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-font-weight: bold;
+                                       -fx-padding: 6 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                    </HBox>
                     <TableView fx:id="tableEtiquetas" VBox.vgrow="ALWAYS"
                                onMouseClicked="#seleccionarEtiqueta"
                                style="-fx-background-color: #1e2d3d; -fx-control-inner-background: #1e2d3d;

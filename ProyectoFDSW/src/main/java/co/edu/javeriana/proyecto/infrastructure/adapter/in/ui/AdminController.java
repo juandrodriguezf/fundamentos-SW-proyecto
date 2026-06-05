@@ -2,6 +2,7 @@ package co.edu.javeriana.proyecto.infrastructure.adapter.in.ui;
 
 import co.edu.javeriana.proyecto.application.usecase.*;
 import co.edu.javeriana.proyecto.domain.*;
+import co.edu.javeriana.proyecto.infrastructure.adapter.out.persistence.CsvExporter;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +14,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
 
@@ -474,6 +480,59 @@ public class AdminController {
     public void seleccionarEtiqueta() {
         Etiqueta sel = tableEtiquetas.getSelectionModel().getSelectedItem();
         if (sel != null && txtNombreEtiqueta != null) txtNombreEtiqueta.setText(sel.getNombre());
+    }
+
+    // ──────────────────────────────────────────────
+    // EXPORTAR CSV
+    // ──────────────────────────────────────────────
+    @FXML
+    public void exportarDashboard() {
+        MetricasAdmin m = metricsUC.ejecutar();
+        guardarCsv("dashboard", CsvExporter.metricasToCsv(m));
+    }
+
+    @FXML
+    public void exportarUsuarios() {
+        List<Usuario> usuarios = usuariosUC.listarTodos();
+        guardarCsv("usuarios", CsvExporter.usuariosToCsv(usuarios));
+    }
+
+    @FXML
+    public void exportarLibros() {
+        List<Libro> libros = librosUC.listarTodos();
+        guardarCsv("libros", CsvExporter.librosToCsv(libros));
+    }
+
+    @FXML
+    public void exportarCategorias() {
+        List<Categoria> categorias = categoriasUC.listarTodas();
+        guardarCsv("categorias", CsvExporter.categoriasToCsv(categorias));
+    }
+
+    @FXML
+    public void exportarEtiquetas() {
+        List<Etiqueta> etiquetas = etiquetasUC.listarTodas();
+        guardarCsv("etiquetas", CsvExporter.etiquetasToCsv(etiquetas));
+    }
+
+    private void guardarCsv(String nombreBase, String contenido) {
+        Platform.runLater(() -> {
+            FileChooser fc = new FileChooser();
+            fc.setTitle("Exportar CSV");
+            fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV", "*.csv"));
+            fc.setInitialFileName(nombreBase + ".csv");
+            Stage stage = (Stage) tabPane.getScene().getWindow();
+            File file = fc.showSaveDialog(stage);
+            if (file != null) {
+                try {
+                    Files.writeString(file.toPath(), "\uFEFF" + contenido, StandardCharsets.UTF_8);
+                    mostrarAlerta("Exportado: " + file.getName());
+                } catch (Exception ex) {
+                    mostrarAlerta("Error al exportar: " + ex.getMessage());
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 
     // ──────────────────────────────────────────────
