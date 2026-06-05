@@ -9,7 +9,7 @@ logs/
 *.iws
 *.iml
 *.ipr
-out/
+/out/
 
 # Eclipse
 .project
